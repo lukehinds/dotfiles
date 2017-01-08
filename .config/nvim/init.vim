@@ -1,8 +1,10 @@
 " * This will only work with neovim
 " * See setup section for extra steps needed
-let g:python_host_prog = '/usr/bin/python'
-let g:python2_host_prog = '/usr/bin/python27'
-let g:python3_host_prog = '/usr/bin/python3.5'
+
+" local
+if filereadable(expand("~/.config/nvim/local.vim"))
+  source ~/.config/nvim/local.vim
+endif
 
 set rtp+=~/.fzf                     " load FZF
 set nocompatible                    " vundle, required
