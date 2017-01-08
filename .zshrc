@@ -43,7 +43,7 @@ export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:~/.cargo/bin:~/b
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Aliases
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias backup="/usr/bin/rsync --exclude-from='excludes.txt' --delete -avh /home/luke/ lhinds@cube:/home/lhinds/rh_backup"
 alias pacup="sudo pacman -Syu"
 alias chknet="~/bin/chknet.sh"
@@ -54,8 +54,6 @@ if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
   alias vi='nvim'
 fi
-
-alias dotfiles config='/usr/bin/git --git-dir=/home/luke/.dotfiles/ --work-tree=/home/luke'
 
 # Systemctl
 alias sdisable=' sudo systemctl disable $@'
