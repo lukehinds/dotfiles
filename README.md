@@ -26,11 +26,11 @@ Create a github repo, named `dotfiles`
 
     dotfiles remote add origin git@github.com:<username>/dotfiles.git
 
-* Replace <username> of course, with your github username.
+* Replace <username> of course with your github username.
 
 ## Usage
 
-You essentially, replace git with the alias `dotfiles`:
+You essentially, replace `git` with the alias `dotfiles`:
 
     dotfiles status
     dotfiles add .gitconfig
