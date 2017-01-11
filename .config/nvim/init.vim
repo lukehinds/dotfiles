@@ -1,12 +1,11 @@
 " * This will only work with neovim
 " * See setup section for extra steps needed
 
-" local
+" source local.vim
 if filereadable(expand("~/.config/nvim/local.vim"))
   source ~/.config/nvim/local.vim
 endif
 
-set rtp+=~/.fzf                     " load FZF
 set nocompatible                    " vundle, required
 filetype off                        " vundle required
 
@@ -29,13 +28,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'YankRing.vim'
 Plug 'neomake/neomake'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 " ### PLUGIN END ###
 
 " TODO:
-" Snipmate
-" Sparkup
-" Yankring
 " Surround
 " Scratch
 " Rainbow Parentheses
@@ -44,7 +43,7 @@ call plug#end()
 " Neomake
 " ### PLUGIN END ###
 
-filetype plugin indent on    " vundle required
+filetype plugin indent on    " might be able to delete this
 
 " ### GENERAL CONFIGS ###
 
@@ -69,6 +68,11 @@ set wrap                " wrap text
 set textwidth=80        " Limit to 89 chars
 set formatoptions=qrn1  " Required by character limit line
 
+" #### FIXES / TWEAKS ###
+
+"fix for yankring 'Clipboard error : Target STRING not available when running'
+let g:yankring_clipboard_monitor=0
+
 " vim-airline theme
 " More can be seen here: https://github.com/vim-airline/vim-airline/wiki/Screenshots
 let g:airline_theme='papercolor'
@@ -82,7 +86,7 @@ if has("wildmenu")
     set wildmenu
     set wildmode=longest:list,full
 endif
-
+let g:jedi#force_py_version=2
 " ### REMAPS ###
 
 " respect line wraps when going up /down
@@ -110,6 +114,8 @@ nnoremap <leader>fs :w <cr>
 " quit out
 nnoremap <leader>q :q <cr>
 
+" quite without save
+nnoremap <leader>qq :q! <cr>
 " Cursor line highlighting
 nnoremap <Leader>ch :set cursorline! <cr>
 
@@ -168,6 +174,7 @@ nnoremap <leader>wp :bprevious<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " ### Plugin Maps ###
 
@@ -202,6 +209,16 @@ set softtabstop=4
 set expandtab
 set autoindent
 
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" neomake flake8
+let g:neomake_python_enabled_makers = ['pyflakes','pep8']
+let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501'], }
+let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=80'], }
+autocmd! BufWritePost * Neomake
 " ====================================== HELP ======================================
 " Vundle:
 " :PluginList       - lists configured plugins
