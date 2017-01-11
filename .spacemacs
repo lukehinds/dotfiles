@@ -279,7 +279,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
       (setq ispell-dictionary "english"
             ispell-extra-args '("-a" "-i" "utf-8")
             ispell-silently-savep t)))
-  (setq-default ispell-program-name "hunspell")
+  (setq-default ispell-program-name "ispell")
   (require 'ox-publish)
   (require 'ox-html)
   (setq org-agenda-files (list "~/org/"
