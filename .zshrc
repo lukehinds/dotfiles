@@ -24,7 +24,7 @@ export TERM=xterm-256color
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:~/.cargo/bin:~/bin:/usr/sbin"
-
+export VISUAL="nvim"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -65,3 +65,5 @@ alias sstatus='sudo systemctl status $@'
 # virtualenvwrapper
 
 source /usr/bin/virtualenvwrapper.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
