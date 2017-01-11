@@ -6,6 +6,12 @@ if filereadable(expand("~/.config/nvim/local.vim"))
   source ~/.config/nvim/local.vim
 endif
 
+" source workspace.vim
+if filereadable(expand("~/.config/nvim/workspace.vim"))
+  source ~/.config/nvim/workspace.vim
+endif
+
+
 set nocompatible                    " vundle, required
 filetype off                        " vundle required
 
@@ -66,7 +72,10 @@ set showmatch
 set hlsearch            " Highlight search results
 set wrap                " wrap text
 set textwidth=80        " Limit to 89 chars
-set formatoptions=qrn1  " Required by character limit line
+set formatoptions=qn1  " Required by character limit line]
+" Set search Highlight colors
+hi Search ctermbg=red
+hi Search ctermfg=black
 
 " #### FIXES / TWEAKS ###
 
@@ -166,15 +175,34 @@ nnoremap <leader>wv <C-w>v<C-w>l
 " open a horizontal window
 nnoremap <leader>wh <C-w>s<C-w>l
 
-" Window Next
+:" Window Next
 nnoremap <leader>wn :bnext<CR>
 nnoremap <leader>wp :bprevious<CR>
 
-" Navigate around windows <ctrl> h,j,k,l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+
+" Terminal
+
+" Navigate around windows in Terminal<ctrl> h,j,k,l
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" change buffer to terminal
+nnoremap <leader>t :vsplit term://zsh<CR>
+
+" escape
+tnoremap <esc> <C-\><C-n>
+
+" enter terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+" Exit terminal
+tnoremap <Leader>e <C-\><C-n>
 
 " ### Plugin Maps ###
 
@@ -238,6 +266,9 @@ autocmd! BufWritePost * Neomake
 " `au` undo (j/k to select a tree node, `p` to preview, `return` to apply
 " `Y` yanks to end of line, and not whole line (bring inline with `C` & `D`)
 " `rn` Toggle Relative Numbers
+" `tv` open terminal in a vertical split
+" `th` open terminal in a horizontal split
+" `esc` close terminal
 " Windows:
 " `ev` open .vimrc in a split window
 " `wv` open vertical window

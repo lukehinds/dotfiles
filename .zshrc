@@ -17,7 +17,23 @@ fi
 # Plugins
 
 plugins=(git z glassfish)
+
 # User configuration
+
+# Up function
+# "up" to "cd ..", or I can run "up 4" to "cd ../../../.."
+
+function up {
+    if [[ "$#" < 1 ]] ; then
+        cd ..
+    else
+        CDSTR=""
+        for i in {1..$1} ; do
+            CDSTR="../$CDSTR"
+        done
+        cd $CDSTR
+    fi
+}
 
 source $ZSH/oh-my-zsh.sh
 export TERM=xterm-256color
@@ -26,21 +42,12 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:~/.cargo/bin:~/bin:/usr/sbin"
 export VISUAL="nvim"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='mvim'
+fi
 
 # Aliases
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
@@ -49,6 +56,12 @@ alias pacup="sudo pacman -Syu"
 alias chknet="~/bin/chknet.sh"
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
+alias x="exit"
+alias g="git"
+alias gs='git status'
+alias gd='git diff'
+alias g-='git checkout -'
+alias serve='python -m SimpleHTTPServer 8000'
 
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -66,4 +79,5 @@ alias sstatus='sudo systemctl status $@'
 
 source /usr/bin/virtualenvwrapper.sh
 
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
