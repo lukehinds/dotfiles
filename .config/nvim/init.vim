@@ -35,8 +35,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'YankRing.vim'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'davidhalter/jedi-vim'
+Plug 'vimwiki/vimwiki'
+Plug 'blindFS/vim-taskwarrior'
+Plug 'majutsushi/tagbar'
+Plug 'tbabej/taskwiki'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'powerman/vim-plugin-AnsiEsc'
 call plug#end()
 " ### PLUGIN END ###
 
@@ -222,6 +226,9 @@ nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 " FZF
 nnoremap <leader>fz :FZF<CR>
 
+" Tagbar
+nnoremap <leader>tb :TagbarToggle <CR>
+
 " Highlight Whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\| \+\ze\t/
@@ -299,7 +306,23 @@ autocmd! BufWritePost * Neomake
 " YankRing:
 " `ys` maps to YRShow to display register cache. Ctrl-P / Ctrl-N to select paste
 " FZF:
-" `fzf`
+" `fzf
+" TagBar:
+" `tb` TagBar toggle
+" VimWiki:
+"
+" <Leader>ww -- Open default wiki index file.
+" <Leader>wt -- Open default wiki index file in a new tab.
+" <Leader>ws -- Select and open wiki index file.
+" <Leader>wd -- Delete wiki file you are in.
+" <Leader>wr -- Rename wiki file you are in.
+" <Enter> -- Follow/Create wiki link
+" <Shift-Enter> -- Split and follow/create wiki link
+" <Ctrl-Enter> -- Vertical split and follow/create wiki link
+" <Backspace> -- Go back to parent(previous) wiki link
+" <Tab> -- Find next wiki link
+" <Shift-Tab> -- Find previous wiki link
+"
 " ====================================== SETUP ======================================
 " The following steps must be carried out manually
 " $ pip2 install --user --upgrade neovim
@@ -312,17 +335,15 @@ autocmd! BufWritePost * Neomake
 " $ ~/.fzf/install
 " Add the following to .vimrc
 " set rtp+=~/.fzf
-"
+" Install CTAGS:
+" Ctags are needed by tarbar toggle (they are available in most repositories for
+" arch, fedora, ubuntu etc
 " TODO:
 " toggle for `paste`
-" open todo in a spilt window
-" redo dotfiles
 " shift+k (or j) move up by 10 spaces (used for large files)
 " $source
 " Holy cow: https://github.com/junegunn/fzf/wiki/examples http://seanbowman.me/blog/fzf-fasd-and-bash-aliases/
 " Add upgrade check for FZF:
 " cd ~/.fzf && git pull && ./install
-" sync to desktop
-" migrate to vim-plug
-" write down terminal to vim edit ctrl-x +  ctrl-e
-" write a decent ToDo with vim, and terminal aliases
+" seperate dotfiles
+" add your own help section (like the plugins have)
