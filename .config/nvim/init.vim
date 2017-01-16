@@ -1,5 +1,5 @@
-" * This will only work with neovim
-" * See setup section for extra steps needed
+" This will only work with neovim
+" See setup section for extra steps needed
 
 " source local.vim
 if filereadable(expand("~/.config/nvim/local.vim"))
@@ -41,6 +41,9 @@ Plug 'majutsushi/tagbar'
 Plug 'tbabej/taskwiki'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'rust-lang/rust.vim'
+Plug 'matze/vim-move'
+
 call plug#end()
 " ### PLUGIN END ###
 
@@ -246,22 +249,24 @@ set autoindent
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" Turn off vimwiki table mappings (that mess with <tab> in deoplete)
+let g:vimwiki_table_mappings = 0
 
 " neomake flake8
 let g:neomake_python_enabled_makers = ['pyflakes','pep8']
 let g:neomake_python_flake8_maker = { 'args': ['--ignore=E501'], }
 let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=80'], }
-autocmd! BufWritePost * Neomake
-" ====================================== HELP ======================================
-" Vundle:
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" see :h vundle for more details or wiki for FAQ
+autocmd! BufWritePost *.py Neomake
 
+" Rust configuration.
+let g:rustfmt_autosave = 1
+autocmd! BufWritePost *.rs Neomake! cargo
+
+" ====================================== HELP ======================================
 " Remaps:
 " `jj` escape remap
 " `m` toggle 80 char width marker
@@ -310,7 +315,6 @@ autocmd! BufWritePost * Neomake
 " TagBar:
 " `tb` TagBar toggle
 " VimWiki:
-"
 " <Leader>ww -- Open default wiki index file.
 " <Leader>wt -- Open default wiki index file in a new tab.
 " <Leader>ws -- Select and open wiki index file.
@@ -322,11 +326,24 @@ autocmd! BufWritePost * Neomake
 " <Backspace> -- Go back to parent(previous) wiki link
 " <Tab> -- Find next wiki link
 " <Shift-Tab> -- Find previous wiki link
-"
+" TaskWiki:
+" QUICK-REFERENCE   --   use "<leader>t" and one of:   --    *taskwiki-quickref*
+"| a  annotate         | C  calendar       | Ga ghistory annual | p  projects |
+"| bd burndown daily   | d  done           | hm history month   | s  summary  |
+"| bw burndown weekly  | D  delete         | ha history annual  | S  stats    |
+"| bm burndown monthly | e  edit           | i  (or <CR>) info  | t  tags     |
+"| cp choose project   | g  grid           | l  back-link       | +  start    |
+"| ct choose tag       | Gm ghistory month | m  modify          | -  stop     |
+" VimMove:
+" Visual Highlight the text, and then Alt j or Alt k
+
 " ====================================== SETUP ======================================
 " The following steps must be carried out manually
 " $ pip2 install --user --upgrade neovim
 " $ pip3 install --user --upgrade neovim
+" $ sudo pip3 install git+git://github.com/robgolding63/tasklib@develop\n
+" $ sudo pip install --upgrade git+git://github.com/robgolding63/tasklib@develop\n
+" $ sudo pip3 install --upgrade git+git://github.com/robgolding63/tasklib@develop\n
 " :echo has("python3") # should return 1
 " Consider some aliases:
 " alias vim='nvim'

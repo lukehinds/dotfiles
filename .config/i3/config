@@ -158,19 +158,15 @@ new_window 1pixel
 bar {
 	position top
     font pango:Source Sans Pro-10 10
-  	status_command i3blocks -c /home/luke/.config/i3/i3blocks.conf
+	status_command i3blocks -c /home/luke/.config/i3/i3blocks.conf
 	colors {
 		background #3f424b
-	    	separator #757575
+		separator #757575
 		focused_workspace  $bg-color          $bg-color          $text-color
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 		}
 }
-
-#bar {
-#        status_command i3status
-#}
 
 # Set keyboard
 exec --no-startup-id  "setxkbmap -layout gb"

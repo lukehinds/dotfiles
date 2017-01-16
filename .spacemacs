@@ -255,7 +255,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 (defun dotspacemacs/user-config ()
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "chromium-browser")
+        browse-url-generic-program "firefox")
   (set-face-attribute 'default nil :family "Source Code Pro")
   (set-face-attribute 'default nil :height 115)
   (require 'whitespace)
