@@ -14,6 +14,9 @@ else
     ZSH_THEME="dpoggi"
 fi
 
+# Taskwarrior prompt
+export PS1='$(task +in +PENDING count) '$PS1
+
 # Plugins
 
 plugins=(git z glassfish)
@@ -36,11 +39,15 @@ function up {
 }
 
 source $ZSH/oh-my-zsh.sh
+
+# Exports
 export TERM=xterm-256color
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+export XDG_CONFIG_DIRS=~/.config
 export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:~/.cargo/bin:~/bin:/usr/sbin"
 export VISUAL="nvim"
+export GOPATH=~/repos/gohome
+export PATH="$PATH:$GOPATH/bin"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -54,6 +61,7 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias backup="/usr/bin/rsync --exclude-from='excludes.txt' --delete -avh /home/luke/ lhinds@cube:/home/lhinds/rh_backup"
 alias pacup="sudo pacman -Syu"
 alias chknet="~/bin/chknet.sh"
+alias gitstat="~/bin/gitstat.sh"
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias x="exit"
@@ -75,9 +83,14 @@ alias srestart='sudo systemctl restart $@'
 alias sstart='sudo systemctl start $@'
 alias sstatus='sudo systemctl status $@'
 
+# Taskwarrior
+alias in='task add +in'
+
 # virtualenvwrapper
 
 source /usr/bin/virtualenvwrapper.sh
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh

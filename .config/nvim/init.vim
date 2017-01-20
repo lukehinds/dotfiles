@@ -43,7 +43,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'rust-lang/rust.vim'
 Plug 'matze/vim-move'
-
+Plug 'fatih/vim-go'
 call plug#end()
 " ### PLUGIN END ###
 

@@ -155,18 +155,21 @@ new_window 1pixel
 #client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 #client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
-bar {
-	position top
-    font pango:Source Sans Pro-10 10
-	status_command i3blocks -c /home/luke/.config/i3/i3blocks.conf
-	colors {
-		background #3f424b
-		separator #757575
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-		}
-}
+#bar {
+    #position top
+    #font pango:Source Sans Pro-10 10
+    #status_command i3blocks -c /home/luke/.config/i3/i3blocks.conf
+    #colors {
+        #background #3f424b
+        #separator #757575
+        #focused_workspace  $bg-color          $bg-color          $text-color
+        #inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+        #urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+        #}
+#}
+
+# Start polybar
+exec_always ~/bin/polybar.sh
 
 # Set keyboard
 exec --no-startup-id  "setxkbmap -layout gb"
@@ -176,6 +179,9 @@ exec nm-applet
 
 # Start Nextcloud Client
 exec nextcloud
+
+# Start redshift
+exec_always redshift
 
 # Shutdown / Reboot
 set $system_power_mode "(s)hutdown or (r)eboot (Esc to exit)"
