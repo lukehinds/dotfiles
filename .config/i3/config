@@ -168,6 +168,9 @@ new_window 1pixel
         #}
 #}
 
+# Monitors
+exec --no-startup-id xrandr --output HDMI-0 --right-of DVI-1
+
 # Start polybar
 exec_always ~/bin/polybar.sh
 

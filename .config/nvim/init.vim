@@ -24,6 +24,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 " ## PLUGIN BEGIN ###
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'simnalamburt/vim-mundo'
@@ -44,7 +45,10 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'rust-lang/rust.vim'
 Plug 'matze/vim-move'
 Plug 'fatih/vim-go'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'mhinz/vim-startify'
 call plug#end()
+
 " ### PLUGIN END ###
 
 " TODO:
@@ -80,9 +84,11 @@ set hlsearch            " Highlight search results
 set wrap                " wrap text
 set textwidth=80        " Limit to 89 chars
 set formatoptions=qn1  " Required by character limit line]
-" Set search Highlight colors
+
+" Rice
 hi Search ctermbg=red
 hi Search ctermfg=black
+colorscheme PaperColor
 
 " #### FIXES / TWEAKS ###
 
