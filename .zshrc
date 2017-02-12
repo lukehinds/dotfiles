@@ -83,8 +83,14 @@ alias srestart='sudo systemctl restart $@'
 alias sstart='sudo systemctl start $@'
 alias sstatus='sudo systemctl status $@'
 
+
+alias vpn='nmcli --ask con $1 $2'
+
 # Taskwarrior
+alias t='task'
 alias in='task add +in'
+alias td='task done $@'
+alias ts='task start $@'
 
 # virtualenvwrapper
 

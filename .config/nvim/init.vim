@@ -157,6 +157,9 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 inoremap jj <ESC>
 tnoremap jj <ESC>
 
+" Ctrl-A select all
+map <C-a> <esc>ggVG<CR>
+
 " ,m to toggle on visual line
 function! g:ToggleColorColumn()
   if &colorcolumn != ''

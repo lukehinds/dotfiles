@@ -25,8 +25,9 @@ rofi.width: 50
 rofi.font: RobotoMono 12
 rofi.lines: 11
 
+! URxvt Settings
 URxvt*termName: rxvt
-URxvt.font: xft:hack:size=10
+URxvt.font: xft:hack::size=10
 URxvt*background:                     #151718
 URxvt*foreground:                     #d6d6d6
 URxvt*cursorColor:                    #d6d6d6
@@ -87,7 +88,7 @@ Xcursor.size: 16W
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
 URxvt.depth: 24
-URxvt.url-launcher: /usr/bin/firefox
+URxvt.url-launcher: /usr/bin/chromium
 URxvt.matcher.button: 1
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
