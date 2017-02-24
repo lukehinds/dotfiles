@@ -28,15 +28,38 @@ rofi.lines: 11
 ! URxvt Settings
 URxvt*termName: rxvt
 URxvt.font: xft:hack::size=10
-URxvt*background:                     #151718
-URxvt*foreground:                     #d6d6d6
-URxvt*cursorColor:                    #d6d6d6
 
 URxvt*scrollColor:                    #d6d6d6
 URxvt*highlightColor:                 #3B758C
 URxvt*highlightTextColor:             #43a5d5
 
+! Zenburn
+
+URxvt*background: #3f3f3f
+URxvt*foreground: #dcdccc
+URxvt*cursorColor: #aaaaaa
+URxvt*colorUL: #366060
+URxvt*underlineColor: #dfaf8f
+URxvt*color0: #3f3f3f
+URxvt*color1: #cc9393
+URxvt*color2: #7f9f7f
+URxvt*color3: #d0bf8f
+URxvt*color4: #6ca0a3
+URxvt*color5: #dc8cc3
+URxvt*color6: #93e0e3
+URxvt*color7: #dcdccc
+URxvt*color8: #000000
+URxvt*color9: #dca3a3
+URxvt*color10: #bfebbf
+URxvt*color11: #f0dfaf
+URxvt*color12: #8cd0d3
+URxvt*color13: #dc8cc3
+URxvt*color14: #93e0e3
+URxvt*color15: #ffffff
+
 ! Dark theme
+!URxvt*background:                     #151718
+!URxvt*foreground:                     #d6d6d6
 !URxvt*color0:                         #151718
 !URxvt*color1:                         #Cd3f45
 !URxvt*color2:                         #9fca56
@@ -64,23 +87,24 @@ URxvt*highlightTextColor:             #43a5d5
 
 ! PaperColour Theme
 
-URxvt.foreground: #4D4D4C
-URxvt.background: #EEEEEE
-URxvt.color0: #EDEDED
-URxvt.color8: #969694
-URxvt.color1: #D7005F
-URxvt.color9: #D7005F
-URxvt.color2: #718C00
-URxvt.color10: #718C00
-URxvt.color3: #D75F00
-URxvt.color11: #D75F00
-URxvt.color4: #4271AE
-URxvt.color12: #4271AE
-URxvt.color13: #8959A8
-URxvt.color6: #3E999F
-URxvt.color14: #3E999F
-URxvt.color7: #4D4D4C
-URxvt.color15: #F5F5F5
+!URxvt*cursorColor:                    #d6d6d6
+!URxvt.foreground: #4D4D4C
+!URxvt.background: #EEEEEE
+!URxvt.color0: #EDEDED
+!URxvt.color8: #969694
+!URxvt.color1: #D7005F
+!URxvt.color9: #D7005F
+!URxvt.color2: #718C00
+!URxvt.color10: #718C00
+!URxvt.color3: #D75F00
+!URxvt.color11: #D75F00
+!URxvt.color4: #4271AE
+!URxvt.color12: #4271AE
+!URxvt.color13: #8959A8
+!URxvt.color6: #3E999F
+!URxvt.color14: #3E999F
+!URxvt.color7: #4D4D4C
+!URxvt.color15: #F5F5F5
 
 
 ! Misc Settings
