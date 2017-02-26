@@ -88,7 +88,7 @@ set formatoptions=qn1  " Required by character limit line]
 " Rice
 hi Search ctermbg=red
 hi Search ctermfg=black
-colorscheme PaperColor
+"colorscheme PaperColor
 
 " #### FIXES / TWEAKS ###
 
@@ -97,7 +97,7 @@ let g:yankring_clipboard_monitor=0
 
 " vim-airline theme
 " More can be seen here: https://github.com/vim-airline/vim-airline/wiki/Screenshots
-let g:airline_theme='papercolor'
+let g:airline_theme='understated'
 
 " Wildmenu ignores (conditional for machines that don't support wildmenu)
 if has("wildmenu")

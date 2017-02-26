@@ -1,4 +1,5 @@
 # https://github.com/lukehinds/dotfiles
+export TERM="xterm-256color"
 
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 # Path to your oh-my-zsh installation.
@@ -8,7 +9,7 @@
 
 if [[ -z "$INSIDE_EMACS" ]]; then
     # normal term
-    ZSH_THEME="agnoster"
+    ZSH_THEME="powerlevel9k/powerlevel9k"
 else
     # inside Emacs
     ZSH_THEME="dpoggi"
@@ -41,12 +42,11 @@ function up {
 source $ZSH/oh-my-zsh.sh
 
 # Exports
-export TERM=xterm-256color
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export XDG_CONFIG_DIRS=~/.config
-export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:~/.cargo/bin:~/bin:/usr/sbin"
+export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:~/.cargo/bin:~/bin:/usr/sbin:~/.gem/ruby/2.4.0/bin"
 export VISUAL="nvim"
-export GOPATH=~/repos/gohome
+export GOPATH=~/repos/go
 export PATH="$PATH:$GOPATH/bin"
 
 # Preferred editor for local and remote sessions

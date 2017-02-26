@@ -79,8 +79,9 @@ bindsym $mod+a focus parent
 # Set primary workspace
 workspace 1 output $monitor1
 workspace 2 output $monitor2
-workspace 3 output $monitor2
+workspace 3 output $monitor1
 workspace 4 output $monitor2
+workspace 5 output $monitor1
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -139,7 +140,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Chromium in firejail
+# dunst
+exec --no-startup-id dunst -config
+
+# Chromium
 
 bindsym $mod+c exec chromium
 
