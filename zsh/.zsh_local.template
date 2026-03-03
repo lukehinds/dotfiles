@@ -1,0 +1,13 @@
+# Machine-specific config and secrets — DO NOT COMMIT THIS FILE
+# Copy to ~/.zsh_local and fill in values
+
+# API keys
+# export OPENAI_API_KEY=""
+# export GEMINI_API_KEY=""
+# export ANTHROPIC_API_KEY=""
+
+# Machine-specific path additions
+# export PATH="$PATH:/some/local/tool/bin"
+
+# Work-specific config
+# export WORK_ENV="..."
