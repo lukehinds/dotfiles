@@ -110,6 +110,7 @@ alias nvm='fnm'
 alias gpm='git pull origin main'
 alias cve='unset VIRTUAL_ENV && hash -r'
 alias killpy='lsof -ti:8000 | xargs kill -9 2>/dev/null || true'
+alias chrome='open -a "Google Chrome"'
 
 # bat (only if installed)
 command -v bat &>/dev/null && alias cat='bat --style=plain --paging=never'
