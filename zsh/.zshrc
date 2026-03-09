@@ -148,3 +148,9 @@ fi
 # Local overrides (not in repo)
 # -----------------------------
 [[ -f "$HOME/.zsh_local" ]] && source "$HOME/.zsh_local"
+
+# -----------------------------
+# Dotfiles update checker
+# -----------------------------
+DOTFILES_DIR="$(dirname "$(readlink -f "${HOME}/.zshrc")" 2>/dev/null)/.."
+[[ -f "$DOTFILES_DIR/zsh/update.zsh" ]] && source "$DOTFILES_DIR/zsh/update.zsh"

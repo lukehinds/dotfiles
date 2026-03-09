@@ -23,18 +23,6 @@ echo "Detected OS: $OS"
 # Helpers
 # -----------------------------
 
-link() {
-    local src="$DOTFILES/$1"
-    local dest="$HOME/$2"
-    mkdir -p "$(dirname "$dest")"
-    if [[ -e "$dest" && ! -L "$dest" ]]; then
-        echo "Backing up existing $dest -> $dest.bak"
-        mv "$dest" "$dest.bak"
-    fi
-    ln -sf "$src" "$dest"
-    echo "Linked $dest -> $src"
-}
-
 install_packages() {
     case "$OS" in
         macos)
@@ -111,14 +99,7 @@ fi
 # -----------------------------
 # Symlinks (after OMZ so our .zshrc wins)
 # -----------------------------
-link zsh/.zshrc .zshrc
-link zsh/.p10k.zsh .p10k.zsh
-
-# Create .zsh_local from template if it doesn't exist
-if [[ ! -f "$HOME/.zsh_local" ]]; then
-    cp "$DOTFILES/zsh/.zsh_local.template" "$HOME/.zsh_local"
-    echo "Created ~/.zsh_local from template — add your secrets and machine-specific config there"
-fi
+"$DOTFILES/sync.sh"
 
 # -----------------------------
 # Set zsh as default shell
