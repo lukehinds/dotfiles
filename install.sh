@@ -71,18 +71,6 @@ install_packages() {
 }
 
 # -----------------------------
-# Symlinks
-# -----------------------------
-link zsh/.zshrc .zshrc
-link zsh/.p10k.zsh .p10k.zsh
-
-# Create .zsh_local from template if it doesn't exist
-if [[ ! -f "$HOME/.zsh_local" ]]; then
-    cp "$DOTFILES/zsh/.zsh_local.template" "$HOME/.zsh_local"
-    echo "Created ~/.zsh_local from template — add your secrets and machine-specific config there"
-fi
-
-# -----------------------------
 # Packages
 # -----------------------------
 install_packages
@@ -118,6 +106,18 @@ fi
 if [[ ! -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ]]; then
     echo "Installing fast-syntax-highlighting..."
     git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$ZSH_CUSTOM/plugins/fast-syntax-highlighting"
+fi
+
+# -----------------------------
+# Symlinks (after OMZ so our .zshrc wins)
+# -----------------------------
+link zsh/.zshrc .zshrc
+link zsh/.p10k.zsh .p10k.zsh
+
+# Create .zsh_local from template if it doesn't exist
+if [[ ! -f "$HOME/.zsh_local" ]]; then
+    cp "$DOTFILES/zsh/.zsh_local.template" "$HOME/.zsh_local"
+    echo "Created ~/.zsh_local from template — add your secrets and machine-specific config there"
 fi
 
 # -----------------------------
