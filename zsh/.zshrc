@@ -154,3 +154,5 @@ fi
 # -----------------------------
 DOTFILES_DIR="$(dirname "$(readlink -f "${HOME}/.zshrc")" 2>/dev/null)/.."
 [[ -f "$DOTFILES_DIR/zsh/update.zsh" ]] && source "$DOTFILES_DIR/zsh/update.zsh"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
