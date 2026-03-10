@@ -38,22 +38,22 @@ install_packages() {
         debian)
             echo "Installing packages via apt..."
             sudo apt-get update -qq
-            sudo apt-get install -y zsh git curl fzf ripgrep bat
+            sudo apt-get install -y zsh git curl fzf ripgrep bat tmux
             ;;
         rhel)
             echo "Installing packages via dnf/yum..."
             if command -v dnf &>/dev/null; then
-                sudo dnf install -y zsh git curl fzf ripgrep
+                sudo dnf install -y zsh git curl fzf ripgrep tmux
             else
-                sudo yum install -y zsh git curl
+                sudo yum install -y zsh git curl tmux
             fi
             ;;
         arch)
             echo "Installing packages via pacman..."
-            sudo pacman -Sy --noconfirm zsh git curl fzf ripgrep bat
+            sudo pacman -Sy --noconfirm zsh git curl fzf ripgrep bat tmux
             ;;
         *)
-            echo "Unknown Linux distro — skipping package install. Install zsh, git, curl, fzf manually."
+            echo "Unknown Linux distro — skipping package install. Install zsh, git, curl, fzf, tmux manually."
             ;;
     esac
 }
@@ -100,6 +100,19 @@ fi
 # Symlinks (after OMZ so our .zshrc wins)
 # -----------------------------
 "$DOTFILES/sync.sh"
+
+# -----------------------------
+# Tmux Plugin Manager
+# -----------------------------
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+    echo "Installing tmux plugin manager..."
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
+
+if command -v tmux &>/dev/null && [[ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]]; then
+    echo "Installing tmux plugins..."
+    "$HOME/.tmux/plugins/tpm/bin/install_plugins" >/dev/null 2>&1 || true
+fi
 
 # -----------------------------
 # Set zsh as default shell

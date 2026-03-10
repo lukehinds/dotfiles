@@ -12,13 +12,14 @@ bash install.sh
 
 `install.sh` detects the OS and:
 - Symlinks `~/.zshrc` to `zsh/.zshrc`
+- Symlinks `~/.config/tmux/tmux.conf` and `tmux.reset.conf`
 - Creates `~/.zsh_local` from the template if it doesn't exist
-- Installs Oh My Zsh, Powerlevel10k, and zsh plugins
+- Installs Oh My Zsh, Powerlevel10k, zsh plugins, and tmux TPM/plugins
 - Sets zsh as the default shell if it isn't already
 - **macOS**: installs Homebrew if missing, then runs `brew bundle`
-- **Debian/Ubuntu**: runs `apt-get install` for core packages
-- **RHEL/Fedora/Amazon Linux**: runs `dnf` or `yum`
-- **Arch**: runs `pacman`
+- **Debian/Ubuntu**: runs `apt-get install` for core packages, including `tmux`
+- **RHEL/Fedora/Amazon Linux**: runs `dnf` or `yum`, including `tmux`
+- **Arch**: runs `pacman`, including `tmux`
 
 ## Secrets and machine-specific config
 
@@ -33,10 +34,25 @@ dotfiles/
 ├── install.sh
 ├── homebrew/
 │   └── Brewfile
+├── tmux/
+│   └── .config/
+│       └── tmux/
+│           ├── tmux.conf
+│           └── tmux.reset.conf
 └── zsh/
     ├── .zshrc
     └── .zsh_local.template
 ```
+
+## Tmux
+
+The tmux module is adapted from [omerxx/dotfiles](https://github.com/omerxx/dotfiles), with the path-specific parts removed so it works in this repo:
+
+- Uses `~/.config/tmux` instead of a hard-coded dotfiles path
+- Uses the official `catppuccin/tmux` plugin instead of the upstream personal fork
+- Leaves session-specific overrides to an optional `~/.config/tmux/local.conf`
+
+If you want to add machine-specific session paths or plugin overrides, create `~/.config/tmux/local.conf` and set them there.
 
 ## Adding new machines / apps
 
