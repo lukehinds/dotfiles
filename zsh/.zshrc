@@ -1,3 +1,13 @@
+# Redirect shell state into TMPDIR when HOME is sandboxed and not writable.
+if [[ -n "${CODEX_SANDBOX:-}" ]]; then
+  export XDG_CACHE_HOME="${TMPDIR:-/tmp}/zsh-cache-${USER}"
+  export HISTFILE="${TMPDIR:-/tmp}/.zsh_history-${USER}"
+  export ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${HOST%%.*}-${ZSH_VERSION}"
+  export FNM_MULTISHELL_PATH="${TMPDIR:-/tmp}/fnm_multishells"
+
+  mkdir -p "${XDG_CACHE_HOME}" "${FNM_MULTISHELL_PATH}"
+fi
+
 # Enable Powerlevel10k instant prompt. Must stay at top.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
