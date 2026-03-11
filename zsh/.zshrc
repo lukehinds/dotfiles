@@ -1,11 +1,12 @@
 # Redirect shell state into TMPDIR when HOME is sandboxed and not writable.
 if [[ -n "${CODEX_SANDBOX:-}" ]]; then
   export XDG_CACHE_HOME="${TMPDIR:-/tmp}/zsh-cache-${USER}"
+  export XDG_STATE_HOME="${TMPDIR:-/tmp}/zsh-state-${USER}"
   export HISTFILE="${TMPDIR:-/tmp}/.zsh_history-${USER}"
   export ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${HOST%%.*}-${ZSH_VERSION}"
   export FNM_MULTISHELL_PATH="${TMPDIR:-/tmp}/fnm_multishells"
 
-  mkdir -p "${XDG_CACHE_HOME}" "${FNM_MULTISHELL_PATH}"
+  mkdir -p "${XDG_CACHE_HOME}" "${XDG_STATE_HOME}" "${FNM_MULTISHELL_PATH}"
 fi
 
 # Enable Powerlevel10k instant prompt. Must stay at top.
@@ -17,7 +18,8 @@ fi
 # Oh My Zsh
 # -----------------------------
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="af-magic"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

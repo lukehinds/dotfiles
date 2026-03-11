@@ -12,6 +12,7 @@ bash install.sh
 
 `install.sh` detects the OS and:
 - Symlinks `~/.zshrc` to `zsh/.zshrc`
+- Symlinks `~/.config/ghostty/config`
 - Symlinks `~/.config/tmux/tmux.conf` and `tmux.reset.conf`
 - Creates `~/.zsh_local` from the template if it doesn't exist
 - Installs Oh My Zsh, Powerlevel10k, zsh plugins, and tmux TPM/plugins
@@ -34,6 +35,10 @@ dotfiles/
 ├── install.sh
 ├── homebrew/
 │   └── Brewfile
+├── ghostty/
+│   └── .config/
+│       └── ghostty/
+│           └── config
 ├── tmux/
 │   └── .config/
 │       └── tmux/
@@ -53,6 +58,14 @@ The tmux module is adapted from [omerxx/dotfiles](https://github.com/omerxx/dotf
 - Leaves session-specific overrides to an optional `~/.config/tmux/local.conf`
 
 If you want to add machine-specific session paths or plugin overrides, create `~/.config/tmux/local.conf` and set them there.
+
+## Ghostty
+
+Ghostty is configured via `~/.config/ghostty/config` and is symlinked from this repo. The default config starts or attaches to the `main` tmux session on launch:
+
+```conf
+initial-command = tmux new-session -A -s main
+```
 
 ## Adding new machines / apps
 

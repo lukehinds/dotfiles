@@ -20,8 +20,10 @@ link() {
 # -----------------------------
 link zsh/.zshrc .zshrc
 link zsh/.p10k.zsh .p10k.zsh
+link ghostty/.config/ghostty/config .config/ghostty/config
 link tmux/.config/tmux/tmux.conf .config/tmux/tmux.conf
 link tmux/.config/tmux/tmux.reset.conf .config/tmux/tmux.reset.conf
+link tmux/.config/tmux/scripts/status-context.sh .config/tmux/scripts/status-context.sh
 
 # Create .zsh_local from template if it doesn't exist
 if [[ ! -f "$HOME/.zsh_local" ]]; then

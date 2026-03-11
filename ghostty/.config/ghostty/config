@@ -1,0 +1,2 @@
+# Start in a shared tmux session when Ghostty opens.
+initial-command = tmux new-session -A -s main
