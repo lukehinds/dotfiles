@@ -1,3 +1,11 @@
+brew "atuin"
+brew "direnv"
+brew "eza"
+brew "fd"
+brew "git-delta"
+brew "mkdocs"
 brew "tmux"
+brew "zoxide"
 
+cask "ghostty"
 cask "font-jetbrains-mono-nerd-font"

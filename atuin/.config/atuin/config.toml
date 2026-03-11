@@ -1,0 +1,6 @@
+style = "compact"
+inline_height = 20
+enter_accept = false
+show_preview = true
+show_help = true
+workspaces = true

@@ -1,0 +1,11 @@
+site_name: Dotfiles Docs
+site_description: Local documentation for terminal workflow, tooling, and bootstrap choices.
+theme:
+  name: mkdocs
+nav:
+  - Home: index.md
+  - Bootstrap: bootstrap.md
+  - Shell Workflow: shell.md
+  - Terminal Stack: terminal.md
+  - Git Workflow: git.md
+  - Daily Workflow: workflow.md

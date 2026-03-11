@@ -12,6 +12,8 @@ bash install.sh
 
 `install.sh` detects the OS and:
 - Symlinks `~/.zshrc` to `zsh/.zshrc`
+- Symlinks `~/.gitconfig`
+- Symlinks `~/.config/atuin/config.toml`
 - Symlinks `~/.config/ghostty/config`
 - Symlinks `~/.config/tmux/tmux.conf` and `tmux.reset.conf`
 - Creates `~/.zsh_local` from the template if it doesn't exist
@@ -35,6 +37,15 @@ dotfiles/
 ├── install.sh
 ├── homebrew/
 │   └── Brewfile
+├── atuin/
+│   └── .config/
+│       └── atuin/
+│           └── config.toml
+├── docs/
+│   ├── index.md
+│   └── terminal.md
+├── git/
+│   └── .gitconfig
 ├── ghostty/
 │   └── .config/
 │       └── ghostty/
@@ -59,13 +70,47 @@ The tmux module is adapted from [omerxx/dotfiles](https://github.com/omerxx/dotf
 
 If you want to add machine-specific session paths or plugin overrides, create `~/.config/tmux/local.conf` and set them there.
 
+`sync.sh` now also ensures TPM is present and runs plugin installation when `tmux` is available, so tmux theme/plugin changes are applied as part of sync rather than requiring a separate manual step.
+
 ## Ghostty
 
 Ghostty is configured via `~/.config/ghostty/config` and is symlinked from this repo. The default config starts or attaches to the `main` tmux session on launch:
 
 ```conf
-initial-command = tmux new-session -A -s main
+command = direct:/opt/homebrew/bin/tmux new-session -A -s main
 ```
+
+## Shell Workflow
+
+The shell setup now assumes a small set of terminal quality-of-life tools when available:
+
+- `atuin` for searchable shell history
+- `zoxide` for smarter directory jumping via `z` and `zi`
+- `direnv` for project-local environment loading
+- `eza` and `fd` for faster file navigation
+- `delta` for improved Git diffs
+- optional `wt` shell integration when the Worktree helper is installed
+
+All of these are guarded in `zsh/.zshrc`, so machines missing a tool will still start cleanly.
+
+## Recommended Workflow
+
+The intended workflow is:
+
+1. Open Ghostty.
+2. Attach to the persistent tmux session.
+3. Use `zoxide` and `git worktree` to move into a task-specific checkout.
+4. Use `direnv` for project-local env, `atuin` for history, and `delta` for review.
+
+This setup is designed to work well with plain `git worktree` and also with optional Worktree helpers that provide a `wt` CLI.
+
+## Local Git config
+
+Git is now managed via `~/.gitconfig`, with existing user identity settings preserved and `delta` enabled as the pager. If you want to keep machine-specific or uncommitted Git preferences out of the repo, add them to `~/.gitconfig.local`; the managed config will include it automatically if present.
+
+## Docs
+
+There is now a local `docs/` tree and `mkdocs.yml` so repo documentation can grow alongside the config. Current docs cover bootstrap, shell tooling, Git defaults, and the intended daily worktree-based workflow.
 
 ## Adding new machines / apps
 

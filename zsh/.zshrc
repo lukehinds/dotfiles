@@ -19,10 +19,9 @@ fi
 # -----------------------------
 export ZSH="$HOME/.oh-my-zsh"
 #ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_THEME="af-magic"
+ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # -----------------------------
 # Completions
@@ -47,8 +46,15 @@ export GPG_TTY=$(tty)
 # fzf
 command -v fzf &>/dev/null && source <(fzf --zsh)
 
-# z - jump to directories
-[[ -f ~/.term/zsh-z.plugin.zsh ]] && source ~/.term/zsh-z.plugin.zsh
+# atuin - shell history search
+command -v atuin &>/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+
+# zoxide - smarter directory jumping
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+else
+  [[ -f ~/.term/zsh-z.plugin.zsh ]] && source ~/.term/zsh-z.plugin.zsh
+fi
 
 # p10k prompt
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
@@ -123,9 +129,16 @@ alias gpm='git pull origin main'
 alias cve='unset VIRTUAL_ENV && hash -r'
 alias killpy='lsof -ti:8000 | xargs kill -9 2>/dev/null || true'
 alias chrome='open -a "Google Chrome"'
+command -v fd &>/dev/null && alias ff='fd --hidden --exclude .git'
 
 # bat (only if installed)
 command -v bat &>/dev/null && alias cat='bat --style=plain --paging=never'
+if command -v eza &>/dev/null; then
+  alias ls='eza --group-directories-first --icons=auto'
+  alias l='eza --group-directories-first --icons=auto'
+  alias ll='eza -lah --group-directories-first --icons=auto --git'
+  alias lt='eza --tree --level=2 --group-directories-first --icons=auto'
+fi
 
 # cargo/nono
 command -v cargo &>/dev/null && alias nn='cargo run --'
@@ -168,3 +181,6 @@ DOTFILES_DIR="$(dirname "$(readlink -f "${HOME}/.zshrc")" 2>/dev/null)/.."
 [[ -f "$DOTFILES_DIR/zsh/update.zsh" ]] && source "$DOTFILES_DIR/zsh/update.zsh"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# direnv should load as late as possible.
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"

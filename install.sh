@@ -102,19 +102,6 @@ fi
 "$DOTFILES/sync.sh"
 
 # -----------------------------
-# Tmux Plugin Manager
-# -----------------------------
-if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-    echo "Installing tmux plugin manager..."
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-fi
-
-if command -v tmux &>/dev/null && [[ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]]; then
-    echo "Installing tmux plugins..."
-    "$HOME/.tmux/plugins/tpm/bin/install_plugins" >/dev/null 2>&1 || true
-fi
-
-# -----------------------------
 # Set zsh as default shell
 # -----------------------------
 if [[ "$SHELL" != "$(command -v zsh)" ]]; then
