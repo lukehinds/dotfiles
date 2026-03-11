@@ -140,6 +140,11 @@ if command -v eza &>/dev/null; then
   alias lt='eza --tree --level=2 --group-directories-first --icons=auto'
 fi
 
+# worktree (wt)
+alias wtl='wt list'
+alias wtc='wt step commit'
+wtt() { wt switch -c "$1"; }
+
 # cargo/nono
 command -v cargo &>/dev/null && alias nn='cargo run --'
 
