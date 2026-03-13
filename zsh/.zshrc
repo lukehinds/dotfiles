@@ -9,24 +9,35 @@ if [[ -n "${CODEX_SANDBOX:-}" ]]; then
   mkdir -p "${XDG_CACHE_HOME}" "${XDG_STATE_HOME}" "${FNM_MULTISHELL_PATH}"
 fi
 
-# Enable Powerlevel10k instant prompt. Must stay at top.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# -----------------------------
-# Oh My Zsh
-# -----------------------------
-export ZSH="$HOME/.oh-my-zsh"
-#ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_THEME="robbyrussell"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
-
 # -----------------------------
 # Completions
 # -----------------------------
 autoload -Uz compinit && compinit
+
+# -----------------------------
+# Zsh plugins (sourced directly)
+# -----------------------------
+ZSH_PLUGIN_DIRS=(
+  "$HOME/.zsh/plugins"
+  "/opt/homebrew/share"
+  "/usr/share/zsh/plugins"
+  "/usr/local/share"
+)
+
+_source_plugin() {
+  local name="$1"
+  for dir in "${ZSH_PLUGIN_DIRS[@]}"; do
+    if [[ -f "$dir/$name/$name.plugin.zsh" ]]; then
+      source "$dir/$name/$name.plugin.zsh"; return
+    elif [[ -f "$dir/$name/$name.zsh" ]]; then
+      source "$dir/$name/$name.zsh"; return
+    fi
+  done
+}
+
+_source_plugin zsh-autosuggestions
+_source_plugin zsh-syntax-highlighting
+_source_plugin fast-syntax-highlighting
 
 # -----------------------------
 # OS Detection
@@ -56,8 +67,8 @@ else
   [[ -f ~/.term/zsh-z.plugin.zsh ]] && source ~/.term/zsh-z.plugin.zsh
 fi
 
-# p10k prompt
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+# starship prompt
+command -v starship &>/dev/null && eval "$(starship init zsh)"
 
 # -----------------------------
 # Dev Tools (guarded per-machine)

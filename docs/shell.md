@@ -4,9 +4,19 @@ The shell layer is managed in [`zsh/.zshrc`](/Users/lukehinds/dev/dotfiles/zsh/.
 
 ## Prompt
 
-- Oh My Zsh provides the framework layer.
-- Powerlevel10k is the active theme.
-- Instant prompt is enabled when the cache file exists.
+- Starship is the prompt, configured in [`starship/starship.toml`](/Users/lukehinds/dev/dotfiles/starship/starship.toml).
+- Uses the catppuccin mocha palette with muted accent colors (no bold, no background blocks).
+- Shows directory, git branch, git status with per-type counts, and language versions when detected.
+
+## Plugins
+
+Zsh plugins are sourced directly without a framework. The plugin loader checks `~/.zsh/plugins`, Homebrew share paths, and system plugin directories.
+
+Active plugins:
+
+- zsh-autosuggestions
+- zsh-syntax-highlighting
+- fast-syntax-highlighting
 
 ## History
 

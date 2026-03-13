@@ -38,22 +38,22 @@ install_packages() {
         debian)
             echo "Installing packages via apt..."
             sudo apt-get update -qq
-            sudo apt-get install -y zsh git curl fzf ripgrep bat tmux
+            sudo apt-get install -y zsh git curl fzf ripgrep bat
             ;;
         rhel)
             echo "Installing packages via dnf/yum..."
             if command -v dnf &>/dev/null; then
-                sudo dnf install -y zsh git curl fzf ripgrep tmux
+                sudo dnf install -y zsh git curl fzf ripgrep
             else
-                sudo yum install -y zsh git curl tmux
+                sudo yum install -y zsh git curl
             fi
             ;;
         arch)
             echo "Installing packages via pacman..."
-            sudo pacman -Sy --noconfirm zsh git curl fzf ripgrep bat tmux
+            sudo pacman -Sy --noconfirm zsh git curl fzf ripgrep bat
             ;;
         *)
-            echo "Unknown Linux distro — skipping package install. Install zsh, git, curl, fzf, tmux manually."
+            echo "Unknown Linux distro -- skipping package install. Install zsh, git, curl, fzf manually."
             ;;
     esac
 }
@@ -64,40 +64,36 @@ install_packages() {
 install_packages
 
 # -----------------------------
-# Oh My Zsh
+# Starship prompt
 # -----------------------------
-if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-    echo "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if ! command -v starship &>/dev/null; then
+    echo "Installing Starship..."
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
 # -----------------------------
-# Powerlevel10k + plugins
+# Zsh plugins
 # -----------------------------
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+ZSH_PLUGINS="$HOME/.zsh/plugins"
+mkdir -p "$ZSH_PLUGINS"
 
-if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
-    echo "Installing Powerlevel10k..."
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
-fi
-
-if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
+if [[ ! -d "$ZSH_PLUGINS/zsh-autosuggestions" ]]; then
     echo "Installing zsh-autosuggestions..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS/zsh-autosuggestions"
 fi
 
-if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]]; then
+if [[ ! -d "$ZSH_PLUGINS/zsh-syntax-highlighting" ]]; then
     echo "Installing zsh-syntax-highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_PLUGINS/zsh-syntax-highlighting"
 fi
 
-if [[ ! -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ]]; then
+if [[ ! -d "$ZSH_PLUGINS/fast-syntax-highlighting" ]]; then
     echo "Installing fast-syntax-highlighting..."
-    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$ZSH_CUSTOM/plugins/fast-syntax-highlighting"
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$ZSH_PLUGINS/fast-syntax-highlighting"
 fi
 
 # -----------------------------
-# Symlinks (after OMZ so our .zshrc wins)
+# Symlinks
 # -----------------------------
 "$DOTFILES/sync.sh"
 

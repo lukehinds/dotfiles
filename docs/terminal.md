@@ -1,13 +1,12 @@
 # Terminal Stack
 
-This repo manages a terminal-first workflow built around Ghostty, tmux, zsh, and a small set of supporting tools.
+This repo manages a terminal-first workflow built around WezTerm, zsh, and a small set of supporting tools.
 
 ## Core pieces
 
-- Ghostty is the terminal emulator and starts in a shared `tmux` session.
-- tmux is the persistent workspace layer.
+- WezTerm is the terminal emulator.
 - zsh is the interactive shell.
-- Powerlevel10k provides prompt rendering.
+- Starship provides prompt rendering with a catppuccin mocha palette.
 
 ## Workflow tools
 
@@ -21,8 +20,8 @@ This repo manages a terminal-first workflow built around Ghostty, tmux, zsh, and
 
 ## Managed config
 
-- Ghostty: `ghostty/.config/ghostty/config`
-- tmux: `tmux/.config/tmux/tmux.conf`
+- WezTerm: `wezterm/.config/wezterm/`
+- Starship: `starship/starship.toml`
 - zsh: `zsh/.zshrc`
 - Atuin: `atuin/.config/atuin/config.toml`
 - Git: `git/.gitconfig`
@@ -32,4 +31,3 @@ This repo manages a terminal-first workflow built around Ghostty, tmux, zsh, and
 - `atuin` is initialized with `--disable-up-arrow`, so shell history on the up arrow keeps its usual behavior and `Ctrl-R` becomes the primary search entry point.
 - `zoxide` is loaded if installed; otherwise the old `z` plugin path remains as a fallback.
 - `direnv` is loaded at the end of `zshrc`, per its recommended setup.
-- Ghostty is configured to launch tmux directly from its managed config.

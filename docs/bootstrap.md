@@ -16,11 +16,10 @@ The bootstrap process in [`install.sh`](/Users/lukehinds/dev/dotfiles/install.sh
 
 1. Detect the operating system.
 2. Install core packages.
-3. Install Oh My Zsh if missing.
-4. Install Powerlevel10k and the configured Zsh plugins if missing.
+3. Install Starship prompt if missing.
+4. Clone zsh plugins into `~/.zsh/plugins` if missing.
 5. Run [`sync.sh`](/Users/lukehinds/dev/dotfiles/sync.sh) to place symlinks in `$HOME`.
-6. Install tmux TPM if missing and then install tmux plugins.
-7. Set `zsh` as the default shell if needed.
+6. Set `zsh` as the default shell if needed.
 
 ## Platform behavior
 
@@ -28,7 +27,7 @@ The bootstrap process in [`install.sh`](/Users/lukehinds/dev/dotfiles/install.sh
 
 - Installs Homebrew if it is missing.
 - Runs `brew bundle --file=homebrew/Brewfile`.
-- Installs Ghostty and the rest of the terminal stack from the Brewfile.
+- Installs WezTerm and the rest of the terminal stack from the Brewfile.
 
 ### Debian / Ubuntu
 
@@ -52,12 +51,12 @@ The repo uses symlinks rather than copying config into place. Editing live files
 Current managed targets include:
 
 - `~/.zshrc`
-- `~/.p10k.zsh`
 - `~/.gitconfig`
 - `~/.config/atuin/config.toml`
-- `~/.config/ghostty/config`
-- `~/.config/tmux/tmux.conf`
-- `~/.config/tmux/tmux.reset.conf`
+- `~/.config/starship.toml`
+- `~/.config/wezterm/wezterm.lua`
+- `~/.config/wezterm/config.lua`
+- `~/.config/wezterm/events.lua`
 
 ## Local-only state
 
@@ -65,7 +64,6 @@ Some configuration should stay outside the repo:
 
 - `~/.zsh_local` for secrets, work tokens, local PATH tweaks, and machine-specific shell settings
 - `~/.gitconfig.local` for Git settings that should not be committed
-- `~/.config/tmux/local.conf` for session paths or tmux behavior that only makes sense on one machine
 
 ## Maintenance notes
 
