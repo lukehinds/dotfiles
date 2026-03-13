@@ -4,7 +4,7 @@ shell-integration = detect
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
 
 # Visual defaults aligned with the tmux Catppuccin setup.
-theme = "Catppuccin Latte"
+theme = "Catppuccin Mocha"
 font-family = "JetBrainsMono Nerd Font"
 font-size = 14
 window-padding-x = 10
