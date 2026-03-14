@@ -128,15 +128,21 @@ export PATH="$PATH:$HOME/.local/bin"
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias x="exit"
+
+# Git Operations
 alias g="git"
 alias gs='git status'
 alias gd='git diff'
 alias g-='git checkout -'
+alias gpm='git pull origin main'
+alias gl='git log --oneline'
+
+# vim
 alias vi='nvim'
 alias vim='nvim'
+
 alias python='python3'
 alias nvm='fnm'
-alias gpm='git pull origin main'
 alias cve='unset VIRTUAL_ENV && hash -r'
 alias killpy='lsof -ti:8000 | xargs kill -9 2>/dev/null || true'
 alias chrome='open -a "Google Chrome"'
@@ -151,10 +157,13 @@ if command -v eza &>/dev/null; then
   alias lt='eza --tree --level=2 --group-directories-first --icons=auto'
 fi
 
-# worktree (wt)
-alias wtl='wt list'
-alias wtc='wt step commit'
+# worktunk
+alias wl='wt list'
+alias wc='wt step commit'
+alias wtm='wt switch main'
 wtt() { wt switch -c "$1"; }
+wd() { wt remove -D "$1"; }
+
 
 # cargo/nono
 command -v cargo &>/dev/null && alias nn='cargo run --'
@@ -200,3 +209,12 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 
 # direnv should load as late as possible.
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
+
+
+claude() {
+  command nono run --profile claude-code --allow-cwd -- /Users/lukehinds/.local/bin/claude "$@"
+}
+
+codex() {
+  command nono run --profile codex --allow-cwd -- /Users/lukehinds/.local/state/fnm_multishells/17028_1773508819414/bin/codex "$@"
+}

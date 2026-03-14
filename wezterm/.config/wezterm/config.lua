@@ -15,7 +15,9 @@ config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
 config.font_size = 16
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.enable_tab_bar = false
+config.enable_tab_bar = true
+config.hide_tab_bar_if_only_one_tab = true
+config.tab_max_width = 32
 config.window_padding = {
 	left = 10,
 	right = 10,
@@ -41,6 +43,12 @@ config.keys = {
 	{ key = "DownArrow", mods = "CMD|SHIFT", action = act({ ActivatePaneDirection = "Down" }) },
 	{ key = "w", mods = "CMD", action = act({ CloseCurrentPane = { confirm = false } }) },
 	{ key = "z", mods = "CMD|SHIFT", action = act.TogglePaneZoomState },
+	-- Option+Arrow: move by word
+	{ key = "LeftArrow", mods = "OPT", action = act({ SendString = "\x1bb" }) },
+	{ key = "RightArrow", mods = "OPT", action = act({ SendString = "\x1bf" }) },
+	-- Cmd+Arrow: move to beginning/end of line
+	{ key = "LeftArrow", mods = "CMD", action = act({ SendString = "\x01" }) },
+	{ key = "RightArrow", mods = "CMD", action = act({ SendString = "\x05" }) },
 }
 config.hyperlink_rules = {
 	{
