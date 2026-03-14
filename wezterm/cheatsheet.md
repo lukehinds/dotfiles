@@ -16,10 +16,11 @@
 |------|--------|
 | `Cmd + D` | Split right |
 | `Cmd + Shift + D` | Split down |
-| `Ctrl + Shift + Left` | Activate pane left |
-| `Ctrl + Shift + Right` | Activate pane right |
-| `Ctrl + Shift + Up` | Activate pane up |
-| `Ctrl + Shift + Down` | Activate pane down |
+| `Cmd + Shift + Left` | Activate pane left |
+| `Cmd + Shift + Right` | Activate pane right |
+| `Cmd + Shift + Up` | Activate pane up |
+| `Cmd + Shift + Down` | Activate pane down |
+| `Cmd + W` | Close pane |
 | `Cmd + Shift + Z` | Toggle pane zoom |
 
 ## Font / Window
@@ -60,8 +61,8 @@
 
 | Item | Value |
 |------|-------|
-| Font | JetBrainsMono Nerd Font (Bold, 14pt) |
-| Color scheme | Tokyo Night |
+| Font | JetBrainsMono Nerd Font (16pt) |
+| Color scheme | Kanagawa (Gogh) |
 | Opacity | 0.94 with background blur |
 | Tab bar | Disabled |
 | Startup | Maximized window |

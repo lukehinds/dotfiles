@@ -13,7 +13,7 @@ config.window_decorations = "RESIZE"
 config.check_for_updates = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
-config.font_size = 14
+config.font_size = 16
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.enable_tab_bar = false
 config.window_padding = {
@@ -24,9 +24,23 @@ config.window_padding = {
 }
 config.window_background_opacity = 0.94
 config.macos_window_background_blur = 20
+config.inactive_pane_hsb = {
+	saturation = 0.5,
+	brightness = 0.4,
+}
+config.pane_focus_follows_mouse = true
+local act = wezterm.action
 config.keys = {
-	{ key = "Enter", mods = "CTRL", action = wezterm.action({ SendString = "\x1b[13;5u" }) },
-	{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b[13;2u" }) },
+	{ key = "Enter", mods = "CTRL", action = act({ SendString = "\x1b[13;5u" }) },
+	{ key = "Enter", mods = "SHIFT", action = act({ SendString = "\x1b[13;2u" }) },
+	{ key = "d", mods = "CMD", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+	{ key = "d", mods = "CMD|SHIFT", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+	{ key = "LeftArrow", mods = "CMD|SHIFT", action = act({ ActivatePaneDirection = "Left" }) },
+	{ key = "RightArrow", mods = "CMD|SHIFT", action = act({ ActivatePaneDirection = "Right" }) },
+	{ key = "UpArrow", mods = "CMD|SHIFT", action = act({ ActivatePaneDirection = "Up" }) },
+	{ key = "DownArrow", mods = "CMD|SHIFT", action = act({ ActivatePaneDirection = "Down" }) },
+	{ key = "w", mods = "CMD", action = act({ CloseCurrentPane = { confirm = false } }) },
+	{ key = "z", mods = "CMD|SHIFT", action = act.TogglePaneZoomState },
 }
 config.hyperlink_rules = {
 	{
